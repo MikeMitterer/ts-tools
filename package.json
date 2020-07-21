@@ -4,7 +4,7 @@
     "version": "0.1.0",
     "description": "Mix of various, unspecified, TS-tools",
     "keywords": [
-        "typescript"
+        "typescript", "range", "loop"
     ],
     "license": "MIT",
     "type-check": "tsc",
