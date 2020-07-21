@@ -42,21 +42,6 @@ pipeline {
                     sh 'yarn run tc'
                     sh 'yarn run lint'
                     sh 'yarn run test'
-
-                    // Builds werden getestet
-                    //      (Dieser Block kann in geklonten Projects entfernt werden)
-                    //      Das richtige 'build' wird in 'Build' ausgeführt
-                    //
-                    sh 'yarn run build:ts'
-                    sh 'yarn run build:types'
-                    sh 'yarn run build:js'
-                    sh 'yarn run build:js:prod'
-                    sh 'yarn run build:babel'
-                    sh 'yarn run build:node'
-                    sh 'yarn run build:node:prod'
-                    sh 'yarn run build:web'
-                    sh 'yarn run build:web:prod'
-
                 }
             }
         }
@@ -92,7 +77,7 @@ pipeline {
                     sh 'yarn run deploy && git push origin HEAD:master'
 
                     // Zum LightSail-Server
-                    sh 'deployWebApp.sh deploy'
+                    // sh 'deployWebApp.sh deploy'
                 }
             }
         }
