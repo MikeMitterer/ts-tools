@@ -5,7 +5,7 @@ const package = require('./package');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
+const BeautifyHtmlWebpackPlugin = require('beautify-html-webpack-plugin')
 const LiveReloadPlugin = require('webpack-livereload-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -56,7 +56,7 @@ module.exports = {
     // devtool: devMode ? 'cheap-eval-source-map' : false,
 
     // cheap-module-eval-source-map is the best option
-    devtool: devMode ? 'cheap-module-eval-source-map' : false,
+    devtool: devMode ? 'inline-source-map' : false,
 
     resolve: {
         extensions: ['.tsx', '.ts', '.js', '.scss'],
@@ -149,10 +149,7 @@ module.exports = {
                     },
                     {
                         // Autoprefixer usw.
-                        loader: 'postcss-loader',
-                        options: {
-                            ident: 'postcss',
-                        },
+                        loader: 'postcss-loader'
                     },
                     {
                         // compiles Sass to CSS, using Node Sass by default
@@ -180,6 +177,19 @@ module.exports = {
                 ],
             },
             {
+                test: /\.ejs$/,
+                use: {
+                    loader: 'ejs-compiled-loader',
+                    options: {
+                        beautify: true,
+                        htmlmin: false,
+                        htmlminOptions: {
+                            removeComments: true
+                        }
+                    }
+                }
+            },
+            {
                 test: /\.html$/,
                 use: [
                     {
@@ -205,7 +215,7 @@ module.exports = {
         // }),
 
         new CopyWebpackPlugin({
-            patterns: [{ from: 'src/site/images/static', to: 'images/static' }],
+            patterns: [{ from: 'src/site/images/static', to: 'images/static' }]
         }),
 
         // Multiple HTML-Pages
@@ -236,18 +246,15 @@ module.exports = {
             chunkFilename: devMode ? 'styles/[id].css' : 'styles/[id].[contenthash].css',
         }),
 
-        new HtmlBeautifyPlugin({
-            config: {
-                html: {
+        // Options: https://www.npmjs.com/package/js-beautify#css--html
+        new BeautifyHtmlWebpackPlugin({
                     end_with_newline: true,
                     indent_size: 4,
                     indent_with_tabs: true,
                     indent_inner_html: true,
                     preserve_newlines: false,
-                    unformatted: ['p', 'i', 'b', 'span'],
-                },
-            },
-            replace: [' type="text/javascript"'],
+            wrap_line_length: 100,
+            unformatted: ['i', 'b', 'span']
         }),
 
         new LiveReloadPlugin(),
@@ -256,16 +263,17 @@ module.exports = {
     optimization: {
         splitChunks: {
             chunks: 'async',
-            minSize: 30000,
+            minSize: 20000,
+            minRemainingSize: 0,
             minChunks: 1,
-            maxAsyncRequests: 5,
-            maxInitialRequests: 3,
-            automaticNameDelimiter: '~',
-            name: true,
+            maxAsyncRequests: 30,
+            maxInitialRequests: 30,
+            enforceSizeThreshold: 50000,
             cacheGroups: {
-                vendors: {
+                defaultVendors: {
                     test: /[\\/]node_modules[\\/]/,
                     priority: -10,
+                    reuseExistingChunk: true,
                 },
                 default: {
                     minChunks: 2,

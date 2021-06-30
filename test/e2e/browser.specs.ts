@@ -41,14 +41,11 @@ describe('puppeteer.ts', () => {
         await browser.close();
     });
 
-    test('Test in Browser', async () => {
+    test('Test in Browser', async (): Promise<void> => {
+        await page.waitForTimeout(4000);
+
         const title = await page.title();
         expect(title).toStartWith('✔ Title');
-        // await page.setContent(
-        //     `
-        //         <h1>Test</h1>
-        //     `,
-        // );
-        // await jestPuppeteer.debug();
+
     }, 100000);
 });
