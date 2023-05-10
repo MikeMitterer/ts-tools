@@ -1,4 +1,3 @@
-import * as qu from 'qunit';
 import { LoggerFactory, LogLevel } from '@mmit/logging'
 import lambi from '../site/images/lambi.png';
 import * as muni from '@mmit/muni'
