@@ -25,9 +25,6 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <!-- QUNIT -->
-    <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.16.0.css">
-
     <%if(devmode){%><script src="http://localhost:35729/livereload.js"></script><%}%>
 
     <style>
@@ -47,8 +44,8 @@
             <img id="frontImg"/>
         </div>
     </div>
-    <div class="layout__content">
-        <div class="content">
+    <div class="layout__content col-2">
+
             <div class="left">
         <div class="toolbar">
             <div class="button" id="tstest">Click me</div>
@@ -64,12 +61,9 @@
                 <% include _partials/lorem.html %>
         </div>
             <div class="right">
-        <div id="unit-tests">
-            <div id="qunit"></div>
-            <div id="qunit-fixture"></div>
-        </div>
+                <% include _partials/muni.html %>
             </div>
-        </div>
+
     </div>
     <div class="layout__footer">
         <div class="is-left">

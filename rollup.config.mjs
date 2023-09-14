@@ -8,7 +8,7 @@
 import typescript from '@rollup/plugin-typescript';
 import replace from '@rollup/plugin-replace'
 
-import pkg from './package.json' // Convert CommonJS modules to ES6
+import pkg from './package.json' assert { type: 'json' };
 
 const name = "tools"
 
@@ -35,7 +35,7 @@ const incrementalDependencyLoader = {
             __buildVersion__: pkg.version
         }),
         typescript({
-            typescript: require('typescript'),
+            // typescript: require('typescript'),
             // module: 'esnext',
             //
             // declaration: true,
