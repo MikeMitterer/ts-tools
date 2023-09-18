@@ -2364,7 +2364,7 @@ __metadata:
     "@types/chai": "npm:^4.3.5"
     "@types/core-js": "npm:^2.5.4"
     "@types/eslint": "npm:^8"
-    "@types/jest": "npm:27.5.1"
+    "@types/jest": "npm:^27.5.1"
     "@types/node": "npm:^20.5.7"
     "@types/shelljs": "npm:^0.8.9"
     "@types/ws": "npm:^7.4.7"
@@ -2967,13 +2967,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jest@npm:27.5.1":
-  version: 27.5.1
-  resolution: "@types/jest@npm:27.5.1"
+"@types/jest@npm:^27.5.1":
+  version: 27.5.2
+  resolution: "@types/jest@npm:27.5.2"
   dependencies:
     jest-matcher-utils: "npm:^27.0.0"
     pretty-format: "npm:^27.0.0"
-  checksum: 79aef00125aaa58bf0da6633e4776f0fec6b362947c3f3d1c3cfd8e8b078ad8cff9c125f3603385a86be1ec36700ea1ef422e392b9934972d49e837cca6561f4
+  checksum: 8608696fbdea81bc9a600d1c5aeb290063357eaa55c0174e7db15087c4f483113b35f8b4c4ae364d2632cfed15a4dd674786254826b946c896de5612c8cb1a26
   languageName: node
   linkType: hard
 
